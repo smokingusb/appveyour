@@ -1,0 +1,14 @@
+version: '{build}'
+image: Visual Studio 2022
+configuration: Release
+platform: x64
+
+install:
+  - ps: nuget restore
+
+build_script:
+  - cmd: dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true -o publish
+
+artifacts:
+  - path: publish
+    name: publish
